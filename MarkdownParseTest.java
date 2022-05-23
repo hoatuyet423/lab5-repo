@@ -118,9 +118,7 @@ public class MarkdownParseTest {
         expected.add("a.com");
         expected.add("a.com(())");
         expected.add("example.com");
-        Path fileName = Path.of(
-            "snipper2.md");
-        String content = Files.readString(fileName);
+        String content = Files.readString(Path.of("snippet2.md"));
         ArrayList<String> links = MarkdownParse.getLinks(content);
         assertEquals(expected, links);
     }
@@ -131,9 +129,7 @@ public class MarkdownParseTest {
         expected.add("https://www.twitter.com");
         expected.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
         expected.add("https://cse.ucsd.edu/");
-        Path fileName = Path.of(
-            "snipper3.md");
-        String content = Files.readString(fileName);
+        String content = Files.readString(Path.of("snippet3.md"));
         ArrayList<String> links = MarkdownParse.getLinks(content);
         assertEquals(expected, links);
     }
