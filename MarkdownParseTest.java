@@ -100,4 +100,43 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(content);
         assertEquals(expected, links);
     }
+
+    @Test
+    public void testSnipper1() throws IOException{
+        ArrayList<String> expected =  new ArrayList<String>();
+        expected.add("`google.com");
+        expected.add("google.com");
+        expected.add("ucsd.edu");
+        String content = Files.readString(Path.of("snippet1.md"));
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(expected, links);
+    }
+
+    @Test
+    public void testSnipper2() throws IOException{
+        ArrayList<String> expected =  new ArrayList<String>();
+        expected.add("a.com");
+        expected.add("a.com(())");
+        expected.add("example.com");
+        Path fileName = Path.of(
+            "snipper2.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(expected, links);
+    }
+
+    @Test
+    public void testSnipper3() throws IOException{
+        ArrayList<String> expected =  new ArrayList<String>();
+        expected.add("https://www.twitter.com");
+        expected.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+        expected.add("https://cse.ucsd.edu/");
+        Path fileName = Path.of(
+            "snipper3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        assertEquals(expected, links);
+    }
+
+
 }  
